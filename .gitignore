@@ -39,3 +39,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Project assets / local
+FOTOS/
+ma-belle-estetica-info.txt
+.vercel

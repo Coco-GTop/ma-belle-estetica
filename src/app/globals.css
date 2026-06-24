@@ -1,26 +1,82 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ============================================================
+   Ma Belle Estetica — Design System (Soft UI Evolution)
+   Palette: rosa + lavanda su crema · WCAG AA+
+   ============================================================ */
+
+@theme {
+  /* Brand colors */
+  --color-primary: #ec4899;        /* rosa */
+  --color-primary-dark: #be185d;
+  --color-on-primary: #ffffff;
+  --color-secondary: #f9a8d4;      /* rosa chiaro */
+  --color-accent: #8b5cf6;         /* lavanda */
+  --color-accent-dark: #6d28d9;
+
+  --color-cream: #fdf2f8;          /* sfondo crema-rosato */
+  --color-cream-deep: #fbe8f3;
+  --color-ink: #831843;            /* foreground (testo forte) */
+  --color-ink-soft: #9d4870;       /* testo secondario */
+  --color-muted: #f1eef5;
+  --color-line: #fbcfe8;           /* bordi */
+  --color-gold: #c9a14a;           /* accento caldo per stelle/dettagli */
+
+  /* Fonts (variabili iniettate da next/font) */
+  --font-display: var(--font-playfair), Georgia, serif;
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+
+  /* Soft shadows */
+  --shadow-soft: 0 4px 20px -4px rgb(236 72 153 / 0.18);
+  --shadow-card: 0 8px 30px -8px rgb(131 24 67 / 0.14);
+  --shadow-lift: 0 18px 50px -12px rgb(131 24 67 / 0.28);
+
+  --radius-soft: 1.25rem;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-cream);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Headings use the display serif by default */
+h1, h2, h3, .font-display {
+  font-family: var(--font-display);
+}
+
+/* Accessible focus ring */
+:where(a, button, [tabindex]):focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+::selection {
+  background: var(--color-secondary);
+  color: var(--color-ink);
+}
+
+/* Decorative soft gradient text */
+.text-gradient {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Respect reduced motion globally as a safety net */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
