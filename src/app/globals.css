@@ -73,20 +73,25 @@ h1, h2, h3, .font-display {
 
 /* ---------- Utilities ---------- */
 
-/* Glassmorphism surface */
+/* Glass surface — no backdrop-filter (cheap, looks the same over dark bg) */
 .glass {
-  background: rgba(255, 255, 255, 0.045);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.03));
   border: 1px solid var(--color-line);
-  backdrop-filter: blur(14px) saturate(120%);
-  -webkit-backdrop-filter: blur(14px) saturate(120%);
   box-shadow: var(--shadow-glass), inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
 }
 
 .glass-strong {
-  background: rgba(255, 255, 255, 0.07);
+  background: rgba(26, 16, 32, 0.72);
   border: 1px solid var(--color-line-strong);
-  backdrop-filter: blur(20px) saturate(130%);
-  -webkit-backdrop-filter: blur(20px) saturate(130%);
+  box-shadow: var(--shadow-glass);
+}
+
+/* Real frosted glass — use ONLY for the navbar (content scrolls behind it) */
+.glass-nav {
+  background: rgba(11, 6, 16, 0.6);
+  border-bottom: 1px solid var(--color-line);
+  backdrop-filter: blur(14px) saturate(120%);
+  -webkit-backdrop-filter: blur(14px) saturate(120%);
 }
 
 /* Gold gradient text */

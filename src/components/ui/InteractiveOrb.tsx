@@ -60,7 +60,7 @@ export function InteractiveOrb() {
         />
         {/* iridescent conic overlay */}
         <motion.div
-          className="absolute inset-0 rounded-full mix-blend-screen opacity-60"
+          className="absolute inset-0 rounded-full opacity-45 [will-change:transform]"
           style={{
             background:
               "conic-gradient(from 0deg, rgba(226,166,190,0.0), rgba(228,197,144,0.5), rgba(180,155,208,0.4), rgba(226,166,190,0.5), rgba(228,197,144,0.0))",
@@ -79,7 +79,7 @@ export function InteractiveOrb() {
 
       {/* orbiting glass shards */}
       {!reduce &&
-        [0, 1, 2].map((i) => (
+        [0, 1].map((i) => (
           <motion.div
             key={i}
             className="absolute left-1/2 top-1/2"
