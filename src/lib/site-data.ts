@@ -126,7 +126,6 @@ export const galleryCategories = [
   { id: "unghie", label: "Unghie" },
   { id: "sguardo", label: "Sguardo" },
   { id: "viso", label: "Viso & Labbra" },
-  { id: "piedi", label: "Piedi" },
 ] as const;
 
 export const gallery: GalleryItem[] = [
@@ -149,8 +148,6 @@ export const gallery: GalleryItem[] = [
   { src: "/gallery/g-495374718.jpg", category: "viso", alt: "Make-up labbra — Ma Belle Estetica" },
   { src: "/gallery/g-496150106.jpg", category: "viso", alt: "Labbra valorizzate — Ma Belle Estetica" },
   { src: "/gallery/g-496797839.jpg", category: "viso", alt: "Trucco labbra glossy — Ma Belle Estetica" },
-  // Piedi
-  { src: "/gallery/g-605204610.jpg", category: "piedi", alt: "Pedicure curativa colorata — Ma Belle Estetica" },
 ];
 
 /** Foto in evidenza (hero / chi sono) */

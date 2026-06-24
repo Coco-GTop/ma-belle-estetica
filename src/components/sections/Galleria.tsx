@@ -50,7 +50,7 @@ export function Galleria() {
           })}
         </div>
 
-        <motion.div layout className="mt-10 columns-2 gap-4 sm:columns-3 lg:columns-4 [&>*]:mb-4">
+        <motion.div layout className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-4">
           {items.map((g, i) => (
             <motion.button
               key={g.src}
@@ -60,16 +60,15 @@ export function Galleria() {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.4, delay: Math.min(i * 0.03, 0.3) }}
               whileHover={reduce ? undefined : { scale: 1.03 }}
-              className="group relative block w-full cursor-pointer overflow-hidden rounded-2xl ring-1 ring-line transition-shadow hover:shadow-[0_0_40px_-10px_rgba(228,197,144,0.45)] hover:ring-gold/40 focus-visible:outline-none"
+              className="group relative block aspect-square w-full cursor-pointer overflow-hidden rounded-2xl ring-1 ring-line transition-shadow hover:shadow-[0_0_40px_-10px_rgba(228,197,144,0.45)] hover:ring-gold/40 focus-visible:outline-none"
               aria-label={`Apri immagine: ${g.alt}`}
             >
               <Image
                 src={g.src}
                 alt={g.alt}
-                width={400}
-                height={400}
+                fill
                 sizes="(max-width: 640px) 45vw, (max-width: 1024px) 30vw, 22vw"
-                className="h-auto w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                className="object-cover transition-transform duration-500 group-hover:scale-105"
                 loading="lazy"
               />
               <span className="absolute inset-0 bg-gradient-to-t from-bg-deep/70 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
