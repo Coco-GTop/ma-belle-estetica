@@ -71,6 +71,12 @@ h1, h2, h3, .font-display {
   color: transparent;
 }
 
+/* Spotlight animation (for splite/Spotlight component) */
+@keyframes spotlight {
+  0% { opacity: 0; transform: translate(-72%, -62%) scale(0.5); }
+  100% { opacity: 1; transform: translate(-50%, -40%) scale(1); }
+}
+
 /* Respect reduced motion globally as a safety net */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }

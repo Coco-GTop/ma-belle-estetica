@@ -28,10 +28,18 @@ export function Navbar() {
     >
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-5 py-3.5 sm:px-8">
         <a href="#top" className="group flex flex-col leading-none">
-          <span className="font-display text-xl font-semibold tracking-tight text-ink sm:text-2xl">
+          <span
+            className={`font-display text-xl font-semibold tracking-tight transition-colors sm:text-2xl ${
+              scrolled ? "text-ink" : "text-white"
+            }`}
+          >
             Ma Belle
           </span>
-          <span className="text-[0.62rem] uppercase tracking-[0.32em] text-primary">
+          <span
+            className={`text-[0.62rem] uppercase tracking-[0.32em] transition-colors ${
+              scrolled ? "text-primary" : "text-secondary"
+            }`}
+          >
             Estetica
           </span>
         </a>
@@ -42,7 +50,9 @@ export function Navbar() {
             <a
               key={l.href}
               href={l.href}
-              className="relative text-sm font-medium text-ink-soft transition-colors hover:text-primary after:absolute after:-bottom-1.5 after:left-0 after:h-px after:w-0 after:bg-primary after:transition-all hover:after:w-full"
+              className={`relative text-sm font-medium transition-colors hover:text-primary after:absolute after:-bottom-1.5 after:left-0 after:h-px after:w-0 after:bg-primary after:transition-all hover:after:w-full ${
+                scrolled ? "text-ink-soft" : "text-white/85"
+              }`}
             >
               {l.label}
             </a>
@@ -57,7 +67,9 @@ export function Navbar() {
           onClick={() => setOpen((v) => !v)}
           aria-label={open ? "Chiudi menu" : "Apri menu"}
           aria-expanded={open}
-          className="grid size-11 place-items-center rounded-full text-ink md:hidden cursor-pointer"
+          className={`grid size-11 place-items-center rounded-full transition-colors md:hidden cursor-pointer ${
+            scrolled || open ? "text-ink" : "text-white"
+          }`}
         >
           {open ? <X className="size-6" /> : <Menu className="size-6" />}
         </button>
