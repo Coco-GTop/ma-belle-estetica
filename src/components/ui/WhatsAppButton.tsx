@@ -7,14 +7,14 @@ import type { ReactNode } from "react";
 type Props = {
   href: string;
   children: ReactNode;
-  variant?: "solid" | "outline" | "ghost";
+  variant?: "gold" | "outline" | "ghost";
   size?: "md" | "lg";
   className?: string;
   showIcon?: boolean;
 };
 
 const base =
-  "inline-flex items-center justify-center gap-2 rounded-full font-medium tracking-tight transition-colors duration-200 cursor-pointer focus-visible:outline-none";
+  "inline-flex items-center justify-center gap-2 rounded-full font-semibold tracking-tight transition-colors duration-200 cursor-pointer focus-visible:outline-none";
 
 const sizes = {
   md: "px-5 py-2.5 text-sm min-h-[44px]",
@@ -22,17 +22,15 @@ const sizes = {
 };
 
 const variants = {
-  solid:
-    "bg-primary text-on-primary shadow-[var(--shadow-soft)] hover:bg-primary-dark",
-  outline:
-    "border-2 border-line text-ink bg-white/70 hover:border-primary hover:text-primary",
-  ghost: "text-ink hover:text-primary",
+  gold: "bg-gradient-to-r from-gold-bright to-gold-deep text-bg-deep shadow-[var(--shadow-gold)] hover:brightness-110",
+  outline: "border border-line-strong bg-white/5 text-ink backdrop-blur hover:border-gold/60",
+  ghost: "text-ink hover:text-gold",
 };
 
 export function WhatsAppButton({
   href,
   children,
-  variant = "solid",
+  variant = "gold",
   size = "md",
   className = "",
   showIcon = true,

@@ -59,13 +59,13 @@ export function Lightbox({ items, index, onClose, onNavigate }: Props) {
           onClick={onClose}
         >
           {/* scrim */}
-          <div className="absolute inset-0 bg-ink/70 backdrop-blur-sm" />
+          <div className="absolute inset-0 bg-bg-deep/85 backdrop-blur-md" />
 
           {/* close */}
           <button
             onClick={onClose}
             aria-label="Chiudi"
-            className="absolute right-4 top-4 z-20 grid size-11 place-items-center rounded-full bg-white/90 text-ink shadow-[var(--shadow-soft)] transition hover:bg-white cursor-pointer"
+            className="absolute right-4 top-4 z-20 grid size-11 place-items-center rounded-full glass text-ink transition hover:text-gold cursor-pointer"
           >
             <X className="size-5" />
           </button>
@@ -74,14 +74,14 @@ export function Lightbox({ items, index, onClose, onNavigate }: Props) {
           <button
             onClick={(e) => { e.stopPropagation(); prev(); }}
             aria-label="Immagine precedente"
-            className="absolute left-3 sm:left-6 z-20 grid size-11 place-items-center rounded-full bg-white/85 text-ink shadow-[var(--shadow-soft)] transition hover:bg-white cursor-pointer"
+            className="absolute left-3 sm:left-6 z-20 grid size-11 place-items-center rounded-full glass text-ink transition hover:text-gold cursor-pointer"
           >
             <ChevronLeft className="size-6" />
           </button>
           <button
             onClick={(e) => { e.stopPropagation(); next(); }}
             aria-label="Immagine successiva"
-            className="absolute right-3 sm:right-6 z-20 grid size-11 place-items-center rounded-full bg-white/85 text-ink shadow-[var(--shadow-soft)] transition hover:bg-white cursor-pointer"
+            className="absolute right-3 sm:right-6 z-20 grid size-11 place-items-center rounded-full glass text-ink transition hover:text-gold cursor-pointer"
           >
             <ChevronRight className="size-6" />
           </button>

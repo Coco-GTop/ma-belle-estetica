@@ -2,6 +2,8 @@ import type { Metadata, Viewport } from "next";
 import { Playfair_Display, Inter } from "next/font/google";
 import "./globals.css";
 import { business, hours } from "@/lib/site-data";
+import { SiteBackground } from "@/components/ui/SiteBackground";
+import { ScrollProgress } from "@/components/ui/ScrollProgress";
 
 const playfair = Playfair_Display({
   variable: "--font-playfair",
@@ -53,7 +55,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#fdf2f8",
+  themeColor: "#0b0610",
   width: "device-width",
   initialScale: 1,
 };
@@ -115,6 +117,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="it" className={`${playfair.variable} ${inter.variable} antialiased`}>
       <body>
+        <SiteBackground />
+        <ScrollProgress />
         {children}
         <JsonLd />
       </body>

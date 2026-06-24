@@ -23,7 +23,7 @@ export function FloatingWhatsApp() {
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Scrivi su WhatsApp"
-          className="fixed bottom-5 right-5 z-40 flex items-center gap-2 rounded-full bg-primary px-5 py-3.5 text-on-primary shadow-[var(--shadow-lift)]"
+          className="fixed bottom-5 right-5 z-40 flex items-center gap-2 rounded-full bg-gradient-to-r from-gold-bright to-gold-deep px-5 py-3.5 text-bg-deep shadow-[var(--shadow-gold)] [animation:pulse-ring_2.6s_ease-out_infinite]"
           initial={reduce ? { opacity: 0 } : { opacity: 0, scale: 0.6, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={reduce ? { opacity: 0 } : { opacity: 0, scale: 0.6, y: 20 }}

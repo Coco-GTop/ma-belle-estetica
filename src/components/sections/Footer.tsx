@@ -21,33 +21,17 @@ function Instagram({ className }: { className?: string }) {
 
 export function Footer() {
   return (
-    <footer className="border-t border-line/60 bg-cream-deep/60 px-5 py-14 sm:px-8">
+    <footer className="relative border-t border-line px-5 py-16 sm:px-8">
       <div className="mx-auto grid max-w-6xl gap-10 sm:grid-cols-2 lg:grid-cols-4">
         <div className="lg:col-span-2">
           <p className="font-display text-2xl font-semibold text-ink">Ma Belle Estetica</p>
-          <p className="text-xs uppercase tracking-[0.32em] text-primary">
-            di {business.owner}
-          </p>
-          <p className="mt-4 max-w-sm text-sm leading-relaxed text-ink-soft">
-            {business.description}
-          </p>
+          <p className="text-xs uppercase tracking-[0.34em] text-gold">di {business.owner}</p>
+          <p className="mt-4 max-w-sm text-sm leading-relaxed text-ink-muted">{business.description}</p>
           <div className="mt-5 flex gap-3">
-            <a
-              href={business.social.facebook}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Facebook di Ma Belle Estetica"
-              className="grid size-11 place-items-center rounded-full border border-line bg-white/70 text-primary transition-colors hover:bg-primary hover:text-on-primary"
-            >
+            <a href={business.social.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook di Ma Belle Estetica" className="glass grid size-11 place-items-center rounded-full text-gold transition-colors hover:bg-gold hover:text-bg-deep">
               <Facebook className="size-5" />
             </a>
-            <a
-              href={business.social.instagram}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Instagram di Natalia"
-              className="grid size-11 place-items-center rounded-full border border-line bg-white/70 text-primary transition-colors hover:bg-primary hover:text-on-primary"
-            >
+            <a href={business.social.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram di Natalia" className="glass grid size-11 place-items-center rounded-full text-gold transition-colors hover:bg-gold hover:text-bg-deep">
               <Instagram className="size-5" />
             </a>
           </div>
@@ -58,9 +42,7 @@ export function Footer() {
           <ul className="mt-4 space-y-2.5 text-sm">
             {nav.map((l) => (
               <li key={l.href}>
-                <a href={l.href} className="text-ink-soft transition-colors hover:text-primary">
-                  {l.label}
-                </a>
+                <a href={l.href} className="text-ink-muted transition-colors hover:text-gold">{l.label}</a>
               </li>
             ))}
           </ul>
@@ -68,28 +50,24 @@ export function Footer() {
 
         <div>
           <h3 className="text-sm font-semibold uppercase tracking-wider text-ink">Dove siamo</h3>
-          <ul className="mt-4 space-y-3 text-sm text-ink-soft">
+          <ul className="mt-4 space-y-3 text-sm text-ink-muted">
             <li className="flex items-start gap-2">
-              <MapPin className="mt-0.5 size-4 shrink-0 text-primary" />
+              <MapPin className="mt-0.5 size-4 shrink-0 text-gold" />
               {business.address.full}
             </li>
             <li className="flex items-center gap-2">
-              <Phone className="size-4 shrink-0 text-primary" />
-              <a href={`tel:${business.phone.intl}`} className="hover:text-primary">
-                {business.phone.display}
-              </a>
+              <Phone className="size-4 shrink-0 text-gold" />
+              <a href={`tel:${business.phone.intl}`} className="hover:text-gold">{business.phone.display}</a>
             </li>
             <li className="flex items-start gap-2">
-              <Mail className="mt-0.5 size-4 shrink-0 text-primary" />
-              <a href={`mailto:${business.email}`} className="break-all hover:text-primary">
-                {business.email}
-              </a>
+              <Mail className="mt-0.5 size-4 shrink-0 text-gold" />
+              <a href={`mailto:${business.email}`} className="break-all hover:text-gold">{business.email}</a>
             </li>
           </ul>
         </div>
       </div>
 
-      <div className="mx-auto mt-12 flex max-w-6xl flex-col items-center justify-between gap-2 border-t border-line/60 pt-6 text-xs text-ink-soft sm:flex-row">
+      <div className="mx-auto mt-12 flex max-w-6xl flex-col items-center justify-between gap-2 border-t border-line pt-6 text-xs text-ink-faint sm:flex-row">
         <p>© {new Date().getFullYear()} {business.legalName}. Tutti i diritti riservati.</p>
         <p>Sernaglia della Battaglia (TV) · {business.priceRange}</p>
       </div>

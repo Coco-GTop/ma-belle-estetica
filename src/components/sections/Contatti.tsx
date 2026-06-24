@@ -6,85 +6,70 @@ import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
 import { business, hours, whatsappDefault, mapsEmbed, mapsLink } from "@/lib/site-data";
 
 export function Contatti() {
-  const today = new Date().getDay(); // 0=Dom
+  const today = new Date().getDay();
   const todayIndex = today === 0 ? 6 : today - 1;
 
   return (
-    <section id="contatti" className="scroll-mt-20 px-5 py-20 sm:px-8 lg:py-28">
+    <section id="contatti" className="relative scroll-mt-20 px-5 py-24 sm:px-8 lg:py-32">
       <div className="mx-auto max-w-6xl">
         <Reveal className="mx-auto max-w-2xl text-center">
-          <p className="text-sm font-medium uppercase tracking-[0.28em] text-primary">
-            Contatti
-          </p>
-          <h2 className="mt-3 text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
-            Ti aspettiamo da Ma Belle
+          <p className="text-sm font-medium uppercase tracking-[0.3em] text-gold">Contatti</p>
+          <h2 className="mt-3 text-3xl font-semibold tracking-tight text-ink sm:text-5xl">
+            Ti aspettiamo da <span className="text-gold">Ma Belle</span>
           </h2>
-          <p className="mt-4 text-lg text-ink-soft">
-            Prenota il tuo appuntamento su WhatsApp o passa a trovarci: c&apos;è un ampio parcheggio.
+          <p className="mt-4 text-lg text-ink-muted">
+            Prenota su WhatsApp o passa a trovarci: c&apos;è un ampio parcheggio.
           </p>
         </Reveal>
 
         <div className="mt-14 grid gap-8 lg:grid-cols-2">
-          {/* info */}
           <Reveal y={28} className="flex flex-col gap-5">
             <div className="grid gap-4 sm:grid-cols-2">
-              <a
-                href={`tel:${business.phone.intl}`}
-                className="flex items-start gap-3 rounded-2xl border border-line/70 bg-white/70 p-5 transition-colors hover:border-primary"
-              >
-                <Phone className="size-5 shrink-0 text-primary" />
+              <a href={`tel:${business.phone.intl}`} className="glass flex items-start gap-3 rounded-2xl p-5 transition-colors hover:text-gold">
+                <Phone className="size-5 shrink-0 text-gold" />
                 <span>
-                  <span className="block text-xs uppercase tracking-wider text-ink-soft">Telefono</span>
+                  <span className="block text-xs uppercase tracking-wider text-ink-faint">Telefono</span>
                   <span className="font-medium text-ink">{business.phone.display}</span>
                 </span>
               </a>
-              <a
-                href={`mailto:${business.email}`}
-                className="flex items-start gap-3 rounded-2xl border border-line/70 bg-white/70 p-5 transition-colors hover:border-primary"
-              >
-                <Mail className="size-5 shrink-0 text-primary" />
+              <a href={`mailto:${business.email}`} className="glass flex items-start gap-3 rounded-2xl p-5 transition-colors hover:text-gold">
+                <Mail className="size-5 shrink-0 text-gold" />
                 <span>
-                  <span className="block text-xs uppercase tracking-wider text-ink-soft">Email</span>
+                  <span className="block text-xs uppercase tracking-wider text-ink-faint">Email</span>
                   <span className="break-all font-medium text-ink">{business.email}</span>
                 </span>
               </a>
-              <a
-                href={mapsLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-start gap-3 rounded-2xl border border-line/70 bg-white/70 p-5 transition-colors hover:border-primary sm:col-span-2"
-              >
-                <MapPin className="size-5 shrink-0 text-primary" />
+              <a href={mapsLink} target="_blank" rel="noopener noreferrer" className="glass flex items-start gap-3 rounded-2xl p-5 transition-colors hover:text-gold sm:col-span-2">
+                <MapPin className="size-5 shrink-0 text-gold" />
                 <span>
-                  <span className="block text-xs uppercase tracking-wider text-ink-soft">Indirizzo</span>
+                  <span className="block text-xs uppercase tracking-wider text-ink-faint">Indirizzo</span>
                   <span className="font-medium text-ink">{business.address.full}</span>
                 </span>
               </a>
             </div>
 
-            {/* hours */}
-            <div className="rounded-[var(--radius-soft)] border border-line/70 bg-white/70 p-6">
+            <div className="glass rounded-[var(--radius-soft)] p-6">
               <div className="flex items-center gap-2">
-                <Clock className="size-5 text-primary" />
+                <Clock className="size-5 text-gold" />
                 <h3 className="font-semibold text-ink">Orari di apertura</h3>
               </div>
-              <ul className="mt-4 divide-y divide-line/60">
+              <ul className="mt-4 divide-y divide-line">
                 {hours.map((h, i) => (
                   <li
                     key={h.day}
                     className={`flex items-center justify-between py-2.5 text-sm ${
-                      i === todayIndex ? "font-semibold text-primary" : "text-ink-soft"
+                      i === todayIndex ? "font-semibold text-gold" : "text-ink-muted"
                     }`}
                   >
                     <span>
                       {h.day}
                       {i === todayIndex && (
-                        <span className="ml-2 rounded-full bg-secondary/40 px-2 py-0.5 text-[0.65rem] uppercase tracking-wide text-primary-dark">
+                        <span className="ml-2 rounded-full bg-gold/15 px-2 py-0.5 text-[0.65rem] uppercase tracking-wide text-gold ring-1 ring-gold/30">
                           oggi
                         </span>
                       )}
                     </span>
-                    <span className={h.closed ? "text-ink-soft/60" : ""}>{h.open}</span>
+                    <span className={h.closed ? "text-ink-faint" : ""}>{h.open}</span>
                   </li>
                 ))}
               </ul>
@@ -95,13 +80,12 @@ export function Contatti() {
             </WhatsAppButton>
           </Reveal>
 
-          {/* map */}
           <Reveal y={28}>
-            <div className="h-full min-h-[420px] overflow-hidden rounded-[var(--radius-soft)] border border-line/70 shadow-[var(--shadow-card)]">
+            <div className="glass h-full min-h-[440px] overflow-hidden rounded-[var(--radius-soft)] p-1.5 ring-1 ring-gold/20">
               <iframe
                 title="Mappa Ma Belle Estetica"
                 src={mapsEmbed}
-                className="size-full min-h-[420px]"
+                className="size-full min-h-[420px] rounded-[1rem]"
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
                 allowFullScreen

@@ -18,21 +18,18 @@ export function Galleria() {
   );
 
   return (
-    <section id="galleria" className="scroll-mt-20 px-5 py-20 sm:px-8 lg:py-28">
+    <section id="galleria" className="relative scroll-mt-20 px-5 py-24 sm:px-8 lg:py-32">
       <div className="mx-auto max-w-6xl">
         <Reveal className="mx-auto max-w-2xl text-center">
-          <p className="text-sm font-medium uppercase tracking-[0.28em] text-primary">
-            Galleria
-          </p>
-          <h2 className="mt-3 text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
-            I nostri lavori
+          <p className="text-sm font-medium uppercase tracking-[0.3em] text-gold">Galleria</p>
+          <h2 className="mt-3 text-3xl font-semibold tracking-tight text-ink sm:text-5xl">
+            I nostri <span className="text-gold">lavori</span>
           </h2>
-          <p className="mt-4 text-lg text-ink-soft">
+          <p className="mt-4 text-lg text-ink-muted">
             Una selezione di unghie, sguardi e dettagli curati nel nostro centro.
           </p>
         </Reveal>
 
-        {/* filters */}
         <div className="mt-8 flex flex-wrap justify-center gap-2">
           {galleryCategories.map((c) => {
             const active = filter === c.id;
@@ -43,8 +40,8 @@ export function Galleria() {
                 aria-pressed={active}
                 className={`min-h-[40px] cursor-pointer rounded-full px-5 py-2 text-sm font-medium transition-colors ${
                   active
-                    ? "bg-primary text-on-primary shadow-[var(--shadow-soft)]"
-                    : "border border-line bg-white/70 text-ink-soft hover:border-primary hover:text-primary"
+                    ? "bg-gradient-to-r from-gold-bright to-gold-deep text-bg-deep shadow-[var(--shadow-gold)]"
+                    : "glass text-ink-muted hover:text-gold"
                 }`}
               >
                 {c.label}
@@ -53,7 +50,6 @@ export function Galleria() {
           })}
         </div>
 
-        {/* masonry */}
         <motion.div layout className="mt-10 columns-2 gap-4 sm:columns-3 lg:columns-4 [&>*]:mb-4">
           {items.map((g, i) => (
             <motion.button
@@ -64,7 +60,7 @@ export function Galleria() {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.4, delay: Math.min(i * 0.03, 0.3) }}
               whileHover={reduce ? undefined : { scale: 1.03 }}
-              className="group relative block w-full cursor-pointer overflow-hidden rounded-2xl shadow-[var(--shadow-soft)] ring-1 ring-line/60 focus-visible:outline-none"
+              className="group relative block w-full cursor-pointer overflow-hidden rounded-2xl ring-1 ring-line transition-shadow hover:shadow-[0_0_40px_-10px_rgba(228,197,144,0.45)] hover:ring-gold/40 focus-visible:outline-none"
               aria-label={`Apri immagine: ${g.alt}`}
             >
               <Image
@@ -76,7 +72,7 @@ export function Galleria() {
                 className="h-auto w-full object-cover transition-transform duration-500 group-hover:scale-105"
                 loading="lazy"
               />
-              <span className="absolute inset-0 bg-gradient-to-t from-ink/40 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+              <span className="absolute inset-0 bg-gradient-to-t from-bg-deep/70 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
             </motion.button>
           ))}
         </motion.div>
