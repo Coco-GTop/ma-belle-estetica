@@ -29,7 +29,7 @@ export function Galleria() {
         <Reveal className="mx-auto max-w-2xl text-center">
           <p className="text-sm font-medium uppercase tracking-[0.3em] text-gold">Galleria</p>
           <h2 className="mt-3 text-3xl font-semibold tracking-tight text-ink sm:text-5xl">
-            I nostri <span className="text-gold">lavori</span>
+            I nostri <span className="text-gradient-gold">lavori</span>
           </h2>
           <p className="mt-4 text-lg text-ink-muted">
             Trattamenti viso, massaggi, unghie e sguardo: una selezione di lavori reali del nostro centro.

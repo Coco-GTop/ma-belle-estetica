@@ -15,7 +15,7 @@ export function Servizi() {
         <Reveal className="mx-auto max-w-2xl text-center">
           <p className="text-sm font-medium uppercase tracking-[0.3em] text-gold">I nostri trattamenti</p>
           <h2 className="mt-3 text-3xl font-semibold tracking-tight text-ink sm:text-5xl">
-            Bellezza su misura, <span className="text-gold">dalla testa ai piedi</span>
+            Bellezza su misura, <span className="text-gradient-gold">dalla testa ai piedi</span>
           </h2>
           <p className="mt-4 text-lg text-ink-muted">
             Ogni trattamento è personalizzato sulle tue esigenze, con cura e attenzione ai dettagli.

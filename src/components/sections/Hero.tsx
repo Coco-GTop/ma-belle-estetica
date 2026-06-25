@@ -112,6 +112,7 @@ export function Hero() {
           <ArchSlideshow
             slides={[
               { src: "/hero/frames/f-mask.jpg", alt: "Applicazione maschera viso in cabina — Ma Belle Estetica" },
+              { src: "/hero/frames/f-nails.jpg", alt: "Unghie curate — Ma Belle Estetica" },
               { src: "/hero/frames/f-massage.jpg", alt: "Massaggio viso personalizzato — Ma Belle Estetica" },
               { src: "/hero/frames/f-product.jpg", alt: "Prodotti skincare professionali — Ma Belle Estetica" },
             ]}

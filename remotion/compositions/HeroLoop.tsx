@@ -16,6 +16,7 @@ const BG = "#0b0610";
 /** Foto reali "di gesto/cura" — vivono in public/gallery (servite via staticFile). */
 export const HERO_PHOTOS = [
   "hero/frames/f-mask.jpg", // maschera viso (1101x1600)
+  "hero/frames/f-nails.jpg", // unghie (743x1600)
   "hero/frames/f-massage.jpg", // massaggio viso (1200x1600)
   "hero/frames/f-product.jpg", // prodotti professionali (1200x1600)
 ];

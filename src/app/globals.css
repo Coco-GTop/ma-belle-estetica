@@ -94,8 +94,14 @@ h1, h2, h3, .font-display {
   -webkit-backdrop-filter: blur(14px) saturate(120%);
 }
 
-/* Gold gradient text */
+/* Gold — colore pieno (usato anche da icone via currentColor).
+   NB: non usare background-clip:text qui, renderebbe trasparenti le icone. */
 .text-gold {
+  color: var(--color-gold);
+}
+
+/* Variante con gradiente oro→rosa — SOLO per testo decorativo (titoli), mai icone */
+.text-gradient-gold {
   background: linear-gradient(120deg, var(--color-gold-bright), var(--color-rose) 60%, var(--color-gold-deep));
   -webkit-background-clip: text;
   background-clip: text;

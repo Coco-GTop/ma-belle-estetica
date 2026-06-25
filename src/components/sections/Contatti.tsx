@@ -16,7 +16,7 @@ export function Contatti() {
         <Reveal className="mx-auto max-w-2xl text-center">
           <p className="text-sm font-medium uppercase tracking-[0.3em] text-gold">Contatti</p>
           <h2 className="mt-3 text-3xl font-semibold tracking-tight text-ink sm:text-5xl">
-            Ti aspettiamo da <span className="text-gold">Ma Belle</span>
+            Ti aspettiamo da <span className="text-gradient-gold">Ma Belle</span>
           </h2>
           <p className="mt-4 text-lg text-ink-muted">
             Prenota su WhatsApp o passa a trovarci: c&apos;è un ampio parcheggio.
