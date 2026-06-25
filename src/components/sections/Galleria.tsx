@@ -7,6 +7,12 @@ import { Reveal } from "@/components/ui/Reveal";
 import { Lightbox } from "@/components/ui/Lightbox";
 import { gallery, galleryCategories } from "@/lib/site-data";
 
+const categoryLabel: Record<string, string> = {
+  trattamenti: "Trattamenti",
+  unghie: "Unghie",
+  prodotti: "Prodotti",
+};
+
 export function Galleria() {
   const reduce = useReducedMotion();
   const [filter, setFilter] = useState<string>("tutte");
@@ -26,7 +32,7 @@ export function Galleria() {
             I nostri <span className="text-gold">lavori</span>
           </h2>
           <p className="mt-4 text-lg text-ink-muted">
-            Una selezione di unghie, sguardi e dettagli curati nel nostro centro.
+            Trattamenti viso, massaggi, unghie e sguardo: una selezione di lavori reali del nostro centro.
           </p>
         </Reveal>
 
@@ -38,7 +44,7 @@ export function Galleria() {
                 key={c.id}
                 onClick={() => setFilter(c.id)}
                 aria-pressed={active}
-                className={`min-h-[40px] cursor-pointer rounded-full px-5 py-2 text-sm font-medium transition-colors ${
+                className={`min-h-[40px] cursor-pointer rounded-full px-5 py-2 text-sm font-medium transition-[color,background-color,box-shadow] duration-200 ${
                   active
                     ? "bg-gradient-to-r from-gold-bright to-gold-deep text-bg-deep shadow-[var(--shadow-gold)]"
                     : "glass text-ink-muted hover:text-gold"
@@ -50,28 +56,42 @@ export function Galleria() {
           })}
         </div>
 
-        <motion.div layout className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-4">
+        {/* Masonry a colonne — rispetta le proporzioni reali */}
+        <motion.div
+          key={filter}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.3 }}
+          className="mt-10 columns-2 gap-3 sm:columns-3 sm:gap-4 lg:columns-4"
+        >
           {items.map((g, i) => (
             <motion.button
               key={g.src}
-              layout
               onClick={() => setOpen(i)}
-              initial={reduce ? { opacity: 0 } : { opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.4, delay: Math.min(i * 0.03, 0.3) }}
-              whileHover={reduce ? undefined : { scale: 1.03 }}
-              className="group relative block aspect-square w-full cursor-pointer overflow-hidden rounded-2xl ring-1 ring-line transition-shadow hover:shadow-[0_0_40px_-10px_rgba(228,197,144,0.45)] hover:ring-gold/40 focus-visible:outline-none"
+              initial={reduce ? { opacity: 0 } : { opacity: 0, y: 14 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, delay: Math.min(i * 0.025, 0.25), ease: [0.16, 1, 0.3, 1] }}
+              className="group relative mb-3 block w-full break-inside-avoid overflow-hidden rounded-2xl ring-1 ring-line transition-shadow duration-200 hover:shadow-[0_0_40px_-10px_rgba(228,197,144,0.45)] hover:ring-gold/40 focus-visible:outline-none sm:mb-4"
               aria-label={`Apri immagine: ${g.alt}`}
             >
               <Image
                 src={g.src}
                 alt={g.alt}
-                fill
+                width={g.w}
+                height={g.h}
                 sizes="(max-width: 640px) 45vw, (max-width: 1024px) 30vw, 22vw"
-                className="object-cover transition-transform duration-500 group-hover:scale-105"
+                className="h-auto w-full object-cover transition-transform duration-300 ease-out group-hover:scale-[1.04]"
                 loading="lazy"
               />
-              <span className="absolute inset-0 bg-gradient-to-t from-bg-deep/70 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+              {/* didascalia in reveal */}
+              <span className="pointer-events-none absolute inset-x-0 bottom-0 translate-y-2 bg-gradient-to-t from-bg-deep/85 via-bg-deep/30 to-transparent p-3 pt-8 text-left opacity-0 transition-all duration-200 group-hover:translate-y-0 group-hover:opacity-100">
+                <span className="block text-[0.65rem] font-medium uppercase tracking-[0.2em] text-gold">
+                  {categoryLabel[g.category]}
+                </span>
+                <span className="mt-0.5 block text-xs font-medium text-ink">
+                  {g.alt.split(" — ")[0]}
+                </span>
+              </span>
             </motion.button>
           ))}
         </motion.div>

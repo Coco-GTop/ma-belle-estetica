@@ -6,19 +6,21 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "hero:studio": "remotion studio remotion/index.ts",
+    "hero:render": "remotion render remotion/index.ts HeroLoop public/hero/hero-loop.mp4 --codec=h264 && remotion render remotion/index.ts HeroLoop public/hero/hero-loop.webm --codec=vp8 && remotion still remotion/index.ts HeroLoop public/hero/hero-poster.jpg --frame=0"
   },
   "dependencies": {
-    "@splinetool/react-spline": "^4.1.0",
-    "@splinetool/runtime": "^1.12.97",
+    "@remotion/cli": "^4.0.483",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
-    "framer-motion": "^12.41.0",
+    "framer-motion": "^12.42.0",
     "lucide-react": "^1.21.0",
     "motion": "^12.41.0",
     "next": "16.2.9",
     "react": "19.2.4",
     "react-dom": "19.2.4",
+    "remotion": "^4.0.483",
     "tailwind-merge": "^3.6.0",
     "tailwindcss-animate": "^1.0.7"
   },

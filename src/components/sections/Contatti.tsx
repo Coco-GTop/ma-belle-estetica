@@ -2,6 +2,7 @@
 
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
 import { Reveal } from "@/components/ui/Reveal";
+import { Parallax } from "@/components/ui/Parallax";
 import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
 import { business, hours, whatsappDefault, mapsEmbed, mapsLink } from "@/lib/site-data";
 
@@ -25,21 +26,21 @@ export function Contatti() {
         <div className="mt-14 grid gap-8 lg:grid-cols-2">
           <Reveal y={28} className="flex flex-col gap-5">
             <div className="grid gap-4 sm:grid-cols-2">
-              <a href={`tel:${business.phone.intl}`} className="glass flex items-start gap-3 rounded-2xl p-5 transition-colors hover:text-gold">
+              <a href={`tel:${business.phone.intl}`} className="glass group flex items-start gap-3 rounded-2xl p-5 transition-[color,transform,box-shadow] duration-200 ease-out hover:-translate-y-1 hover:text-gold hover:shadow-[0_0_30px_-12px_rgba(228,197,144,0.5)]">
                 <Phone className="size-5 shrink-0 text-gold" />
                 <span>
                   <span className="block text-xs uppercase tracking-wider text-ink-faint">Telefono</span>
                   <span className="font-medium text-ink">{business.phone.display}</span>
                 </span>
               </a>
-              <a href={`mailto:${business.email}`} className="glass flex items-start gap-3 rounded-2xl p-5 transition-colors hover:text-gold">
+              <a href={`mailto:${business.email}`} className="glass group flex items-start gap-3 rounded-2xl p-5 transition-[color,transform,box-shadow] duration-200 ease-out hover:-translate-y-1 hover:text-gold hover:shadow-[0_0_30px_-12px_rgba(228,197,144,0.5)]">
                 <Mail className="size-5 shrink-0 text-gold" />
                 <span>
                   <span className="block text-xs uppercase tracking-wider text-ink-faint">Email</span>
                   <span className="break-all font-medium text-ink">{business.email}</span>
                 </span>
               </a>
-              <a href={mapsLink} target="_blank" rel="noopener noreferrer" className="glass flex items-start gap-3 rounded-2xl p-5 transition-colors hover:text-gold sm:col-span-2">
+              <a href={mapsLink} target="_blank" rel="noopener noreferrer" className="glass group flex items-start gap-3 rounded-2xl p-5 transition-[color,transform,box-shadow] duration-200 ease-out hover:-translate-y-1 hover:text-gold hover:shadow-[0_0_30px_-12px_rgba(228,197,144,0.5)] sm:col-span-2">
                 <MapPin className="size-5 shrink-0 text-gold" />
                 <span>
                   <span className="block text-xs uppercase tracking-wider text-ink-faint">Indirizzo</span>
@@ -64,7 +65,8 @@ export function Contatti() {
                     <span>
                       {h.day}
                       {i === todayIndex && (
-                        <span className="ml-2 rounded-full bg-gold/15 px-2 py-0.5 text-[0.65rem] uppercase tracking-wide text-gold ring-1 ring-gold/30">
+                        <span className="ml-2 inline-flex items-center gap-1 rounded-full bg-gold/15 px-2 py-0.5 text-[0.65rem] uppercase tracking-wide text-gold ring-1 ring-gold/30">
+                          <span className="size-1.5 rounded-full bg-gold twinkle" />
                           oggi
                         </span>
                       )}
@@ -81,7 +83,7 @@ export function Contatti() {
           </Reveal>
 
           <Reveal y={28}>
-            <div className="glass h-full min-h-[440px] overflow-hidden rounded-[var(--radius-soft)] p-1.5 ring-1 ring-gold/20">
+            <Parallax distance={26} className="glass h-full min-h-[440px] overflow-hidden rounded-[var(--radius-soft)] p-1.5 ring-1 ring-gold/20">
               <iframe
                 title="Mappa Ma Belle Estetica"
                 src={mapsEmbed}
@@ -90,7 +92,7 @@ export function Contatti() {
                 referrerPolicy="no-referrer-when-downgrade"
                 allowFullScreen
               />
-            </div>
+            </Parallax>
           </Reveal>
         </div>
       </div>

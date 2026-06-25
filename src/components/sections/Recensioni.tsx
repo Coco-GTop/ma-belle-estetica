@@ -29,7 +29,9 @@ export function Recensioni() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: i * 0.08, type: "spring", stiffness: 300 }}
               >
-                <Star className="size-8 fill-gold text-gold drop-shadow-[0_0_12px_rgba(228,197,144,0.5)]" />
+                <span className="twinkle block" style={{ animationDelay: `${i * 0.28}s` }}>
+                  <Star className="size-8 fill-gold text-gold drop-shadow-[0_0_12px_rgba(228,197,144,0.5)]" />
+                </span>
               </motion.span>
             ))}
           </div>

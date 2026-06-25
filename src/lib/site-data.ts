@@ -120,39 +120,40 @@ export const services: Service[] = [
   },
 ];
 
-export type GalleryItem = { src: string; category: "unghie" | "sguardo" | "viso" | "piedi"; alt: string };
+export type GalleryItem = {
+  src: string;
+  category: "unghie" | "trattamenti" | "prodotti";
+  alt: string;
+  /** dimensioni reali del file — per masonry senza layout shift */
+  w: number;
+  h: number;
+};
 export const galleryCategories = [
   { id: "tutte", label: "Tutte" },
+  { id: "trattamenti", label: "Trattamenti" },
   { id: "unghie", label: "Unghie" },
-  { id: "sguardo", label: "Sguardo" },
-  { id: "viso", label: "Viso & Labbra" },
+  { id: "prodotti", label: "Prodotti" },
 ] as const;
 
 export const gallery: GalleryItem[] = [
+  // Trattamenti in cabina (viso / massaggi) — verticali
+  { src: "/gallery/g-massaggio-viso.jpg", category: "trattamenti", alt: "Applicazione maschera viso in cabina — Ma Belle Estetica", w: 688, h: 1000 },
+  { src: "/gallery/g-massaggio-viso-2.jpg", category: "trattamenti", alt: "Massaggio viso personalizzato — Ma Belle Estetica", w: 750, h: 1000 },
   // Unghie / nail art
-  { src: "/gallery/g-605135935.jpg", category: "unghie", alt: "Nail art rosa con stelle dorate — Ma Belle Estetica" },
-  { src: "/gallery/g-605121933.jpg", category: "unghie", alt: "Unghie effetto mauve — Ma Belle Estetica" },
-  { src: "/gallery/g-528298654.jpg", category: "unghie", alt: "Ricostruzione unghie elegante — Ma Belle Estetica" },
-  { src: "/gallery/g-605114205.jpg", category: "unghie", alt: "Semipermanente naturale — Ma Belle Estetica" },
-  { src: "/gallery/g-494498038.jpg", category: "unghie", alt: "Manicure curata — Ma Belle Estetica" },
-  { src: "/gallery/g-495009239.jpg", category: "unghie", alt: "Unghie eleganti — Ma Belle Estetica" },
-  // Sguardo (sopracciglia / ciglia)
-  { src: "/gallery/g-527523053.jpg", category: "sguardo", alt: "Sopracciglia e ciglia definite — Ma Belle Estetica" },
-  { src: "/gallery/g-528047204.jpg", category: "sguardo", alt: "Make-up sguardo — Ma Belle Estetica" },
-  { src: "/gallery/g-526568073.jpg", category: "sguardo", alt: "Trattamento sguardo — Ma Belle Estetica" },
-  { src: "/gallery/g-528074986.jpg", category: "sguardo", alt: "Laminazione sopracciglia — Ma Belle Estetica" },
-  { src: "/gallery/g-495339665.jpg", category: "sguardo", alt: "Sopracciglia disegnate — Ma Belle Estetica" },
-  { src: "/gallery/g-496938280.jpg", category: "sguardo", alt: "Sguardo definito — Ma Belle Estetica" },
-  // Viso & labbra
-  { src: "/gallery/g-494957289.jpg", category: "viso", alt: "Trucco labbra — Ma Belle Estetica" },
-  { src: "/gallery/g-495374718.jpg", category: "viso", alt: "Make-up labbra — Ma Belle Estetica" },
-  { src: "/gallery/g-496150106.jpg", category: "viso", alt: "Labbra valorizzate — Ma Belle Estetica" },
-  { src: "/gallery/g-496797839.jpg", category: "viso", alt: "Trucco labbra glossy — Ma Belle Estetica" },
+  { src: "/gallery/g-605135935.jpg", category: "unghie", alt: "Nail art rosa con stelle dorate — Ma Belle Estetica", w: 414, h: 414 },
+  { src: "/gallery/g-605121933.jpg", category: "unghie", alt: "Unghie effetto mauve — Ma Belle Estetica", w: 414, h: 414 },
+  { src: "/gallery/g-528298654.jpg", category: "unghie", alt: "Ricostruzione unghie elegante — Ma Belle Estetica", w: 414, h: 414 },
+  { src: "/gallery/g-605114205.jpg", category: "unghie", alt: "Semipermanente naturale — Ma Belle Estetica", w: 414, h: 414 },
+  { src: "/gallery/g-494498038.jpg", category: "unghie", alt: "Manicure curata — Ma Belle Estetica", w: 414, h: 414 },
+  // Prodotti professionali in uso al centro
+  { src: "/gallery/g-prodotti-1.jpg", category: "prodotti", alt: "Olio viso ozonizzato Equilibrio — trattamento Essere Pro — Ma Belle Estetica", w: 1065, h: 1500 },
+  { src: "/gallery/g-prodotti-2.jpg", category: "prodotti", alt: "Siero viso professionale — Ma Belle Estetica", w: 825, h: 1100 },
+  { src: "/gallery/g-prodotti-3.jpg", category: "prodotti", alt: "Linea prodotti per la cura quotidiana — Ma Belle Estetica", w: 1091, h: 1100 },
 ];
 
 /** Foto in evidenza (hero / chi sono) */
 export const featured = {
-  hero: "/gallery/g-527523053.jpg",
+  hero: "/gallery/g-massaggio-viso.jpg",
   heroSecondary: "/gallery/g-605135935.jpg",
   about: "/natalia.jpg",
 };

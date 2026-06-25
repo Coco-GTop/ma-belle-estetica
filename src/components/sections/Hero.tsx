@@ -1,17 +1,25 @@
 "use client";
 
-import { motion, useMotionValue, useMotionTemplate, useReducedMotion } from "motion/react";
+import { useRef } from "react";
+import { motion, useMotionValue, useMotionTemplate, useScroll, useTransform, useReducedMotion } from "motion/react";
 import { Star, MessageCircle, Sparkles } from "lucide-react";
-import { InteractiveOrb } from "@/components/ui/InteractiveOrb";
+import { ArchVideo } from "@/components/ui/ArchVideo";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 import { CountUp } from "@/components/ui/CountUp";
 import { business, whatsappDefault } from "@/lib/site-data";
 
 export function Hero() {
   const reduce = useReducedMotion();
+  const sectionRef = useRef<HTMLElement>(null);
   const px = useMotionValue(50);
   const py = useMotionValue(30);
   const spotlight = useMotionTemplate`radial-gradient(600px circle at ${px}% ${py}%, rgba(228,197,144,0.12), transparent 60%)`;
+
+  // Parallax/fade allo scroll: testo e visual si muovono a velocità diverse → profondità
+  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start start", "end start"] });
+  const textY = useTransform(scrollYProgress, [0, 1], reduce ? [0, 0] : [0, -70]);
+  const visualY = useTransform(scrollYProgress, [0, 1], reduce ? [0, 0] : [0, -28]);
+  const fadeOut = useTransform(scrollYProgress, [0, 0.85], reduce ? [1, 1] : [1, 0.15]);
 
   function onMove(e: React.MouseEvent<HTMLElement>) {
     if (reduce) return;
@@ -31,6 +39,7 @@ export function Hero() {
 
   return (
     <section
+      ref={sectionRef}
       id="top"
       onMouseMove={onMove}
       className="relative flex min-h-[820px] items-center overflow-hidden px-5 pb-16 pt-28 sm:px-8 lg:pt-32"
@@ -40,7 +49,7 @@ export function Hero() {
 
       <div className="mx-auto grid w-full max-w-6xl items-center gap-10 lg:grid-cols-[1.05fr_0.95fr]">
         {/* text */}
-        <div>
+        <motion.div style={{ y: textY, opacity: fadeOut }}>
           <motion.div custom={0} variants={fade} initial="hidden" animate="show" className="glass inline-flex items-center gap-2 rounded-full px-4 py-1.5">
             <Sparkles className="size-4 text-gold" />
             <span className="text-sm tracking-wide text-ink/80">
@@ -90,17 +99,22 @@ export function Hero() {
               </div>
             ))}
           </motion.dl>
-        </div>
+        </motion.div>
 
-        {/* 3D orb */}
+        {/* video reale dei trattamenti in cornice ad arco */}
         <motion.div
-          initial={reduce ? { opacity: 0 } : { opacity: 0, scale: 0.9 }}
+          initial={reduce ? { opacity: 0 } : { opacity: 0, scale: 0.94 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1.1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.9, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
+          style={{ y: visualY }}
           className="relative"
         >
-          <InteractiveOrb />
-          <div className="mt-3 flex items-center justify-center gap-1 text-gold">
+          <ArchVideo
+            src="/hero/hero-loop"
+            poster="/hero/hero-poster.jpg"
+            alt="Trattamenti viso e massaggi da Ma Belle Estetica"
+          />
+          <div className="mt-5 flex items-center justify-center gap-1 text-gold">
             {Array.from({ length: 5 }).map((_, i) => (
               <Star key={i} className="size-4 fill-gold text-gold" />
             ))}

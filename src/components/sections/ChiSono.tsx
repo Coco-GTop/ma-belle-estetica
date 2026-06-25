@@ -1,7 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { motion, useReducedMotion } from "motion/react";
+import { useRef } from "react";
+import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
 import { GraduationCap, Heart, Star, Car } from "lucide-react";
 import { Reveal } from "@/components/ui/Reveal";
 import { business, featured } from "@/lib/site-data";
@@ -15,13 +16,20 @@ const facts = [
 
 export function ChiSono() {
   const reduce = useReducedMotion();
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  });
+  // parallax leggero (clamp ±24px) — disattivato in reduced-motion
+  const imgY = useTransform(scrollYProgress, [0, 1], reduce ? [0, 0] : [24, -24]);
 
   return (
-    <section id="chi-sono" className="relative scroll-mt-20 px-5 py-24 sm:px-8 lg:py-32">
+    <section ref={sectionRef} id="chi-sono" className="relative scroll-mt-20 px-5 py-24 sm:px-8 lg:py-32">
       <div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-2">
-        {/* image with clip-path reveal */}
+        {/* image with clip-path reveal + parallax */}
         <Reveal y={30}>
-          <div className="relative mx-auto w-full max-w-md">
+          <motion.div className="relative mx-auto w-full max-w-md" style={{ y: imgY }}>
             <div className="absolute -inset-3 rounded-[2.2rem] bg-gradient-to-br from-gold/20 to-rose/10 blur-xl" />
             <motion.div
               className="relative aspect-[4/5] overflow-hidden rounded-[2rem] ring-1 ring-gold/30"
@@ -48,7 +56,7 @@ export function ChiSono() {
               <p className="font-display text-lg italic text-ink">«Passione e amore»</p>
               <p className="mt-1 text-sm text-gold">— Natalia</p>
             </motion.div>
-          </div>
+          </motion.div>
         </Reveal>
 
         {/* text */}
@@ -73,8 +81,8 @@ export function ChiSono() {
             {facts.map((f) => {
               const Icon = f.icon;
               return (
-                <div key={f.label} className="glass flex items-start gap-3 rounded-2xl p-4">
-                  <span className="grid size-10 shrink-0 place-items-center rounded-xl bg-gold/15 text-gold ring-1 ring-gold/25">
+                <div key={f.label} className="glass group flex items-start gap-3 rounded-2xl p-4 transition-[transform,box-shadow] duration-200 ease-out hover:-translate-y-1 hover:shadow-[0_0_30px_-12px_rgba(228,197,144,0.5)]">
+                  <span className="grid size-10 shrink-0 place-items-center rounded-xl bg-gold/15 text-gold ring-1 ring-gold/25 transition-transform duration-200 ease-out group-hover:scale-110">
                     <Icon className="size-5" strokeWidth={1.7} />
                   </span>
                   <div>

@@ -40,10 +40,10 @@ export function Servizi() {
                 }}
               >
                 <GlassCard className="flex h-full flex-col p-7">
-                  <span className="grid size-14 place-items-center rounded-2xl bg-white/5 text-gold-bright ring-1 ring-gold/40 transition-colors group-hover:bg-gold/15">
-                    <Icon className="size-7" strokeWidth={1.7} />
+                  <span className="grid size-14 place-items-center rounded-2xl bg-white/5 text-gold-bright ring-1 ring-gold/40 transition-[background-color,transform,box-shadow] duration-200 ease-out group-hover:-translate-y-0.5 group-hover:bg-gold/15 group-hover:shadow-[0_0_24px_-6px_rgba(228,197,144,0.55)]">
+                    <Icon className="size-7 transition-transform duration-200 ease-out group-hover:scale-110 group-hover:-rotate-6" strokeWidth={1.7} />
                   </span>
-                  <h3 className="mt-5 text-xl font-semibold text-ink">{s.title}</h3>
+                  <h3 className="mt-5 text-xl font-semibold text-ink transition-colors duration-200 group-hover:text-gold-bright">{s.title}</h3>
                   <p className="mt-2 text-[0.95rem] leading-relaxed text-ink-muted">{s.description}</p>
                   <ul className="mt-5 space-y-2 border-t border-line pt-5">
                     {s.items.map((it) => (

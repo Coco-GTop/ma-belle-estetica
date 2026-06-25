@@ -1,4 +1,5 @@
 import { MapPin, Phone, Mail } from "lucide-react";
+import { Reveal } from "@/components/ui/Reveal";
 import { business, nav } from "@/lib/site-data";
 
 function Facebook({ className }: { className?: string }) {
@@ -22,16 +23,16 @@ function Instagram({ className }: { className?: string }) {
 export function Footer() {
   return (
     <footer className="relative border-t border-line px-5 py-16 sm:px-8">
-      <div className="mx-auto grid max-w-6xl gap-10 sm:grid-cols-2 lg:grid-cols-4">
+      <Reveal className="mx-auto grid max-w-6xl gap-10 sm:grid-cols-2 lg:grid-cols-4">
         <div className="lg:col-span-2">
           <p className="font-display text-2xl font-semibold text-ink">Ma Belle Estetica</p>
           <p className="text-xs uppercase tracking-[0.34em] text-gold">di {business.owner}</p>
           <p className="mt-4 max-w-sm text-sm leading-relaxed text-ink-muted">{business.description}</p>
           <div className="mt-5 flex gap-3">
-            <a href={business.social.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook di Ma Belle Estetica" className="glass grid size-11 place-items-center rounded-full text-gold transition-colors hover:bg-gold hover:text-bg-deep">
+            <a href={business.social.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook di Ma Belle Estetica" className="glass grid size-11 place-items-center rounded-full text-gold transition-[transform,background-color,color,box-shadow] duration-200 ease-out hover:-translate-y-0.5 hover:scale-105 hover:bg-gold hover:text-bg-deep hover:shadow-[var(--shadow-gold)]">
               <Facebook className="size-5" />
             </a>
-            <a href={business.social.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram di Natalia" className="glass grid size-11 place-items-center rounded-full text-gold transition-colors hover:bg-gold hover:text-bg-deep">
+            <a href={business.social.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram di Natalia" className="glass grid size-11 place-items-center rounded-full text-gold transition-[transform,background-color,color,box-shadow] duration-200 ease-out hover:-translate-y-0.5 hover:scale-105 hover:bg-gold hover:text-bg-deep hover:shadow-[var(--shadow-gold)]">
               <Instagram className="size-5" />
             </a>
           </div>
@@ -65,7 +66,7 @@ export function Footer() {
             </li>
           </ul>
         </div>
-      </div>
+      </Reveal>
 
       <div className="mx-auto mt-12 flex max-w-6xl flex-col items-center justify-between gap-2 border-t border-line pt-6 text-xs text-ink-faint sm:flex-row">
         <p>© {new Date().getFullYear()} {business.legalName}. Tutti i diritti riservati.</p>
