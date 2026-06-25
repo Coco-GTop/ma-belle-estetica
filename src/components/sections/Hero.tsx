@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import { motion, useMotionValue, useMotionTemplate, useScroll, useTransform, useReducedMotion } from "motion/react";
 import { Star, MessageCircle, Sparkles } from "lucide-react";
-import { ArchVideo } from "@/components/ui/ArchVideo";
+import { ArchSlideshow } from "@/components/ui/ArchSlideshow";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 import { CountUp } from "@/components/ui/CountUp";
 import { business, whatsappDefault } from "@/lib/site-data";
@@ -109,10 +109,12 @@ export function Hero() {
           style={{ y: visualY }}
           className="relative"
         >
-          <ArchVideo
-            src="/hero/hero-loop"
-            poster="/hero/hero-poster.jpg"
-            alt="Trattamenti viso e massaggi da Ma Belle Estetica"
+          <ArchSlideshow
+            slides={[
+              { src: "/hero/frames/f-mask.jpg", alt: "Applicazione maschera viso in cabina — Ma Belle Estetica" },
+              { src: "/hero/frames/f-massage.jpg", alt: "Massaggio viso personalizzato — Ma Belle Estetica" },
+              { src: "/hero/frames/f-product.jpg", alt: "Prodotti skincare professionali — Ma Belle Estetica" },
+            ]}
           />
           <div className="mt-5 flex items-center justify-center gap-1 text-gold">
             {Array.from({ length: 5 }).map((_, i) => (
