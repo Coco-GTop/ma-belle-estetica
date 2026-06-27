@@ -89,7 +89,7 @@ export function Hero() {
           {/* stats */}
           <motion.dl custom={4} variants={fade} initial="hidden" animate="show" className="mt-10 grid max-w-md grid-cols-3 gap-4">
             {[
-              { v: <CountUp to={2012} />, l: "Dal" },
+              { v: <CountUp to={2017} />, l: "In attività dal" },
               { v: <><CountUp to={5} decimals={1} />★</>, l: `${business.reviewsCount} recensioni` },
               { v: <><CountUp to={100} suffix="%" /></>, l: "Su misura" },
             ].map((s, i) => (
