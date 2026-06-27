@@ -60,10 +60,10 @@ export const mapsLink =
 export type Hour = { day: string; short: string; open: string; closed?: boolean };
 export const hours: Hour[] = [
   { day: "Lunedì", short: "Lun", open: "10:00 – 16:00" },
-  { day: "Martedì", short: "Mar", open: "10:00 – 19:00" },
+  { day: "Martedì", short: "Mar", open: "10:00 – 12:30 / 14:30 – 19:00" },
   { day: "Mercoledì", short: "Mer", open: "14:00 – 20:00" },
   { day: "Giovedì", short: "Gio", open: "13:00 – 19:00" },
-  { day: "Venerdì", short: "Ven", open: "10:00 – 19:00" },
+  { day: "Venerdì", short: "Ven", open: "10:00 – 12:30 / 14:30 – 19:00" },
   { day: "Sabato", short: "Sab", open: "09:00 – 13:00" },
   { day: "Domenica", short: "Dom", open: "Chiuso", closed: true },
 ];

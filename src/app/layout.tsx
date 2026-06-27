@@ -67,21 +67,24 @@ function JsonLd() {
   };
   const openingHours = hours
     .filter((h) => !h.closed)
-    .map((h) => {
-      const [open, close] = h.open.replace(/\s/g, "").split("–");
-      return {
-        "@type": "OpeningHoursSpecification",
-        dayOfWeek: dayMap[h.day],
-        opens: open,
-        closes: close,
-      };
-    });
+    // un giorno può avere più fasce (es. pausa pranzo "10:00 – 12:30 / 14:30 – 19:00")
+    .flatMap((h) =>
+      h.open.split("/").map((segment) => {
+        const [opens, closes] = segment.replace(/\s/g, "").split("–");
+        return {
+          "@type": "OpeningHoursSpecification",
+          dayOfWeek: dayMap[h.day],
+          opens,
+          closes,
+        };
+      })
+    );
 
   const data = {
     "@context": "https://schema.org",
     "@type": "BeautySalon",
     name: business.legalName,
-    image: `${SITE_URL}/gallery/g-527523053.jpg`,
+    image: `${SITE_URL}/gallery/g-massaggio-viso.jpg`,
     url: SITE_URL,
     telephone: business.phone.intl,
     email: business.email,
