@@ -8,7 +8,7 @@ import { Reveal } from "@/components/ui/Reveal";
 import { business, featured } from "@/lib/site-data";
 
 const facts = [
-  { icon: GraduationCap, label: "Diploma S.E.M. 2013", sub: "Oltre 10 anni di esperienza" },
+  { icon: GraduationCap, label: "Diploma S.E.M. 2013", sub: "In attività dal 2017" },
   { icon: Heart, label: "Trattamenti su misura", sub: "Per ogni esigenza" },
   { icon: Star, label: "5,0 / 5 su Google", sub: "Clienti soddisfatte" },
   { icon: Car, label: "Ampio parcheggio", sub: "Facile da raggiungere" },
