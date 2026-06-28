@@ -8,6 +8,26 @@ import { MagneticButton } from "@/components/ui/MagneticButton";
 import { CountUp } from "@/components/ui/CountUp";
 import { business, whatsappDefault } from "@/lib/site-data";
 
+function SplitChars({ text, className, baseDelay = 0 }: { text: string; className?: string; baseDelay?: number }) {
+  const reduce = useReducedMotion();
+  return (
+    <span className={className} aria-label={text}>
+      {text.split("").map((char, i) => (
+        <motion.span
+          key={i}
+          aria-hidden
+          style={{ display: char === " " ? "inline" : "inline-block" }}
+          initial={reduce ? { opacity: 0 } : { opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.55, delay: baseDelay + i * 0.038, ease: [0.16, 1, 0.3, 1] }}
+        >
+          {char === " " ? " " : char}
+        </motion.span>
+      ))}
+    </span>
+  );
+}
+
 export function Hero() {
   const reduce = useReducedMotion();
   const sectionRef = useRef<HTMLElement>(null);
@@ -15,11 +35,13 @@ export function Hero() {
   const py = useMotionValue(30);
   const spotlight = useMotionTemplate`radial-gradient(600px circle at ${px}% ${py}%, rgba(228,197,144,0.12), transparent 60%)`;
 
-  // Parallax/fade allo scroll: testo e visual si muovono a velocità diverse → profondità
+  // Parallax/fade + scale allo scroll → profondità 3D (wearebrand-style)
   const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start start", "end start"] });
   const textY = useTransform(scrollYProgress, [0, 1], reduce ? [0, 0] : [0, -70]);
   const visualY = useTransform(scrollYProgress, [0, 1], reduce ? [0, 0] : [0, -28]);
   const fadeOut = useTransform(scrollYProgress, [0, 0.85], reduce ? [1, 1] : [1, 0.15]);
+  // ArchSlideshow scala da 1.12→1.0 mentre scrolli → illusione di profondità
+  const visualScale = useTransform(scrollYProgress, [0, 0.65], reduce ? [1, 1] : [1.12, 1.0]);
 
   function onMove(e: React.MouseEvent<HTMLElement>) {
     if (reduce) return;
@@ -57,19 +79,29 @@ export function Hero() {
             </span>
           </motion.div>
 
-          <motion.h1
-            custom={1}
-            variants={fade}
-            initial="hidden"
-            animate="show"
-            className="mt-6 text-5xl font-semibold leading-[1.04] tracking-tight sm:text-6xl lg:text-7xl"
-          >
-            <span className="text-ink">Bellezza</span>
+          <h1 className="mt-6 text-5xl font-semibold leading-[1.04] tracking-tight sm:text-6xl lg:text-7xl">
+            <SplitChars text="Bellezza" className="text-ink" baseDelay={0.18} />
             <br />
-            <span className="shimmer">su misura</span>
+            <motion.span
+              className="shimmer"
+              initial={{ opacity: 0, y: 22 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.56, ease: [0.16, 1, 0.3, 1] }}
+              style={{ display: "inline-block" }}
+            >
+              su misura
+            </motion.span>
             <br />
-            <span className="font-display italic text-ink/90">con passione</span>
-          </motion.h1>
+            <motion.span
+              className="font-display italic text-ink/90"
+              initial={{ opacity: 0, y: 22 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.72, ease: [0.16, 1, 0.3, 1] }}
+              style={{ display: "inline-block" }}
+            >
+              con passione
+            </motion.span>
+          </h1>
 
           <motion.p custom={2} variants={fade} initial="hidden" animate="show" className="mt-6 max-w-md text-lg leading-relaxed text-ink-muted">
             {business.claim}: per ognuna un trattamento studiato su misura. Unghie, viso,
@@ -103,20 +135,26 @@ export function Hero() {
 
         {/* video reale dei trattamenti in cornice ad arco */}
         <motion.div
-          initial={reduce ? { opacity: 0 } : { opacity: 0, scale: 0.94 }}
-          animate={{ opacity: 1, scale: 1 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
           transition={{ duration: 0.9, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
           style={{ y: visualY }}
           className="relative"
         >
+          {/* scroll scale 1.12→1.0 = profondità 3D come wearebrand.io */}
+          <motion.div style={{ scale: visualScale }} className="origin-center">
           <ArchSlideshow
             slides={[
               { src: "/hero/frames/f-mask.jpg", alt: "Applicazione maschera viso in cabina — Ma Belle Estetica" },
               { src: "/hero/frames/f-nails.jpg", alt: "Unghie curate — Ma Belle Estetica" },
               { src: "/hero/frames/f-massage.jpg", alt: "Massaggio viso personalizzato — Ma Belle Estetica" },
               { src: "/hero/frames/f-product.jpg", alt: "Prodotti skincare professionali — Ma Belle Estetica" },
+              { src: "/gallery/g-massaggio-viso.jpg", alt: "Massaggio viso rilassante — Ma Belle Estetica" },
+              { src: "/gallery/g-massaggio-viso-2.jpg", alt: "Trattamento viso in cabina — Ma Belle Estetica" },
+              { src: "/gallery/g-prodotti-1.jpg", alt: "Prodotti skincare selezionati — Ma Belle Estetica" },
             ]}
           />
+          </motion.div>
           <div className="mt-5 flex items-center justify-center gap-1 text-gold">
             {Array.from({ length: 5 }).map((_, i) => (
               <Star key={i} className="size-4 fill-gold text-gold" />

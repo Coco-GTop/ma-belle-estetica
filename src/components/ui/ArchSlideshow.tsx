@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { motion, useMotionValue, useSpring, useTransform, useReducedMotion } from "motion/react";
 
 export type Slide = { src: string; alt: string };
@@ -21,16 +21,27 @@ export function ArchSlideshow({ slides, interval = 3800 }: Props) {
   const reduce = useReducedMotion();
   const [active, setActive] = useState(0);
   const ref = useRef<HTMLDivElement>(null);
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const mx = useMotionValue(0.5);
   const my = useMotionValue(0.5);
   const rotateX = useSpring(useTransform(my, [0, 1], [6, -6]), { stiffness: 150, damping: 18 });
   const rotateY = useSpring(useTransform(mx, [0, 1], [-6, 6]), { stiffness: 150, damping: 18 });
 
-  useEffect(() => {
+  const startTimer = useCallback(() => {
+    if (timerRef.current) clearInterval(timerRef.current);
     if (reduce || slides.length < 2) return;
-    const id = setInterval(() => setActive((v) => (v + 1) % slides.length), interval);
-    return () => clearInterval(id);
+    timerRef.current = setInterval(() => setActive((v) => (v + 1) % slides.length), interval);
   }, [reduce, slides.length, interval]);
+
+  useEffect(() => {
+    startTimer();
+    return () => { if (timerRef.current) clearInterval(timerRef.current); };
+  }, [startTimer]);
+
+  function goTo(i: number) {
+    setActive(i);
+    startTimer();
+  }
 
   function onMove(e: React.MouseEvent<HTMLDivElement>) {
     if (reduce || !ref.current) return;
@@ -89,6 +100,28 @@ export function ArchSlideshow({ slides, interval = 3800 }: Props) {
         <span aria-hidden className="pointer-events-none absolute inset-0 z-10 [box-shadow:inset_0_0_90px_20px_rgba(11,6,16,0.45)]" />
         <span aria-hidden className="pointer-events-none absolute inset-x-8 top-0 z-10 h-px bg-gradient-to-r from-transparent via-white/40 to-transparent" />
       </motion.div>
+
+      {/* dot indicators */}
+      {!reduce && slides.length > 1 && (
+        <div className="mt-4 flex items-center justify-center gap-2" role="tablist" aria-label="Seleziona slide">
+          {slides.map((_, i) => (
+            <motion.button
+              key={i}
+              role="tab"
+              aria-selected={i === active}
+              aria-label={`Slide ${i + 1}`}
+              onClick={() => goTo(i)}
+              className="rounded-full"
+              animate={{
+                width: i === active ? 20 : 6,
+                height: 6,
+                backgroundColor: i === active ? "rgba(228,197,144,1)" : "rgba(255,255,255,0.25)",
+              }}
+              transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+            />
+          ))}
+        </div>
+      )}
 
       {/* schegge di vetro fluttuanti */}
       {!reduce &&
